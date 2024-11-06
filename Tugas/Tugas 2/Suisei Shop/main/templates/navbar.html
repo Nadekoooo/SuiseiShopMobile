@@ -1,0 +1,69 @@
+<nav class="bg-blue-950 shadow-lg fixed top-0 left-0 z-40 w-screen">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+          <div class="gap-3 flex items-center">
+            <img class = "w-9 h-9" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/9ef55354-ebbc-4a02-8d88-5f49670d658c/def17i7-3a090c2d-4bcc-48a2-81a8-46aa3b0c4869.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzllZjU1MzU0LWViYmMtNGEwMi04ZDg4LTVmNDk2NzBkNjU4Y1wvZGVmMTdpNy0zYTA5MGMyZC00YmNjLTQ4YTItODFhOC00NmFhM2IwYzQ4NjkucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.4pvlbAFf_f_bQ0L78qBVw7sZ67v9b7wVvie9aDpcJ2U" alt="">
+            <h1 class="text-2xl font-bold text-center text-white">SuiseiShop</h1>
+          </div>
+          <div class="hidden md:flex items-center gap-[50px] pl-10">
+              <!-- Navigation Links -->
+              <a href="{% url 'main:show_att' %}" class="text-white hover:bg-blue-700 px-3 py-2 rounded-md">Home</a>
+              <a href="{% url 'main:show_att' %}" class="text-white hover:bg-blue-700 px-3 py-2 rounded-md">Products</a>
+              <a href="{% url 'main:show_att' %}" class="text-white hover:bg-blue-700 px-3 py-2 rounded-md">Categories</a>
+              <a href="{% url 'main:show_att' %}" class="text-white hover:bg-blue-700 px-3 py-2 rounded-md">Cart</a>
+          </div>
+          <div class="hidden md:flex items-center">
+              {% if user.is_authenticated %}
+              <span class="text-gray-300 mr-4">Welcome, {{ user.username }}</span>
+              <a href="{% url 'main:logout' %}" class="text-center bg-blue-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300">
+                  Logout
+              </a>
+              {% else %}
+              <a href="{% url 'main:login' %}" class="text-center bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300 mr-2">
+                  Login
+              </a>
+              <a href="{% url 'main:register' %}" class="text-center bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition duration-300">
+                  Register
+              </a>
+              {% endif %}
+          </div>
+          <div class="md:hidden flex items-center">
+              <button class="mobile-menu-button">
+                  <svg class="w-6 h-6 text-white" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                      <path d="M4 6h16M4 12h16M4 18h16"></path>
+                  </svg>
+              </button>
+          </div>
+      </div>
+  </div>
+  <!-- Mobile menu -->
+  <div class="mobile-menu hidden md:hidden px-4 w-full md:max-w-full">
+      <div class="pt-2 pb-3 space-y-1 mx-auto">
+          <a href="{% url 'main:show_att' %}" class="block text-white hover:bg-blue-700 px-3 py-2 rounded-md">Home</a>
+          <a href="{% url 'main:show_att' %}" class="block text-white hover:bg-blue-700 px-3 py-2 rounded-md">Products</a>
+          <a href="{% url 'main:show_att' %}" class="block text-white hover:bg-blue-700 px-3 py-2 rounded-md">Categories</a>
+          <a href="{% url 'main:show_att' %}" class="block text-white hover:bg-blue-700 px-3 py-2 rounded-md">Cart</a>
+          {% if user.is_authenticated %}
+          <span class="block text-gray-300 px-3 py-2">Welcome, {{ user.username }}</span>
+          <a href="{% url 'main:logout' %}" class="block text-center bg-blue-400 hover:bg-blue-300 text-white font-bold py-2 px-4 rounded transition duration-300">
+              Logout
+          </a>
+          {% else %}
+          <a href="{% url 'main:login' %}" class="block text-center bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300 mb-2">
+              Login
+          </a>
+          <a href="{% url 'main:register' %}" class="block text-center bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition duration-300">
+              Register
+          </a>
+          {% endif %}
+      </div>
+  </div>
+  <script>
+      const btn = document.querySelector("button.mobile-menu-button");
+      const menu = document.querySelector(".mobile-menu");
+
+      btn.addEventListener("click", () => {
+          menu.classList.toggle("hidden");
+      });
+  </script>
+</nav>
